@@ -1,6 +1,6 @@
 ---
 
-- name: Register ec2 instance with subscription mangler
+- name: Register RHEL assets with subscription manager
   hosts: "{{ _hosts | default(omit)  }}"
   become: true
 
@@ -25,7 +25,7 @@
         name: subscription-manager
         state: present
 
-    - name: Remove rhui client packages
+    - name: Remove RHUI client packages
       ansible.builtin.yum:
         name: rh-amazon-rhui-client*
         state: removed
