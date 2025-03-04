@@ -1,0 +1,10 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"ansible.python.interpreterPath": "/Users/dperrone/.pyenv/versions/3.12.0/envs/ansible_dev/bin/python"
+	}
+}
