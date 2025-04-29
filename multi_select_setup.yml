@@ -1,0 +1,21 @@
+---
+
+- name: Setup multiple just more than one demo
+  hosts: localhost
+  gather_facts: false
+  vars:
+    launch_jobs:
+      name: "Product Demos | Single demo setup"
+      wait: true
+
+  tasks:
+    - name: Build controller launch jobs
+      loop: "{{ demos }}"
+      ansible.builtin.set_fact:
+        controller_launch_jobs: "{{ (controller_launch_jobs | d([])) + [launch_jobs | combine({'extra_vars': {'demo': item}})] }}"
+
+    - name: Default Components
+      vars:
+        controller_dependency_check: false  # noqa: var-naming[no-role-prefix]
+      ansible.builtin.include_role:
+        name: "infra.controller_configuration.job_launch"
